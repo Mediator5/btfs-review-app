@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+    --color-teald: #426663;
+    --color-teald-50: #eef4f3;
+    --color-teald-100: #dbe8e6;
+    --color-teald-200: #b8d0cc;
+    --color-teald-300: #95b8b2;
+    --color-teald-400: #709e94;
+    --color-teald-500: #426663;
+    --color-teald-600: #3b5c5a;
+    --color-teald-700: #314c4b;
+    --color-teald-800: #273c3c;
+    --color-teald-900: #1d2c2c;
+}
