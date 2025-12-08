@@ -117,8 +117,7 @@ export default function ReviewFormPage() {
     };
 
 
-    console.log(loadedReviews)
-    console.log(loadedReviews?.[0])
+
     const comment = loadedReviews?.[0]?.comment
 
     if (comment) {
