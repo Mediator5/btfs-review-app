@@ -7,6 +7,60 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import supabase from '../services/supabase';
 
+const usStates = [
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming"
+];
+
+
 // 1. Fetch broker details using the ID from the URL param
 const fetchBrokerDetails = async (brokerId) => {
     const { data, error } = await supabase
@@ -89,6 +143,25 @@ export default function CreateLoadPage() {
                     <label htmlFor="deliveryDate" className="block text-sm font-medium text-gray-700">Delivery Date</label>
                     <input type="date" id="deliveryDate" {...register('deliveryDate', { required: true })}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" />
+                </div>
+
+                <div>
+                    <label className="block font-medium text-gray-700">Origin State</label>
+                    <select {...register('originState')} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
+                        {usStates.map((state) => (
+                            <option value={state}>{state}</option>
+                        ))}
+
+                    </select>
+                </div>
+                <div>
+                    <label className="block font-medium text-gray-700">Destination State</label>
+                    <select {...register('destinationState')} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
+                        {usStates.map((state) => (
+                            <option value={state}>{state}</option>
+                        ))}
+
+                    </select>
                 </div>
 
                 <button

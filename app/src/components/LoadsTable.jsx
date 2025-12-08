@@ -125,6 +125,8 @@ export default function LoadsTable() {
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Broker</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pickup Date</th>
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Delivery Date</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Origin</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destination</th>
                             <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
@@ -136,6 +138,8 @@ export default function LoadsTable() {
                                 <td className="px-6 py-4 whitespace-nowrap">{load.brokers?.name || 'N/A'}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{load.pickupDate}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{load.deliveryDate}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{load.originState}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{load.destinationState}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div className="relative inline-block text-left" ref={openPopupId === load.id ? popupRef : null}>
                                         <button

@@ -79,6 +79,7 @@ export default function ReviewFormPage() {
             // Form Data
             ...formData,
             communicationRating: parseInt(formData.communicationRating),
+            performanceRating: parseInt(formData.performanceRating),
             // Default visibility
             // showOnSite: true,
         };
@@ -94,7 +95,7 @@ export default function ReviewFormPage() {
             <div className="max-w-xl mx-auto mt-10 p-8 bg-green-100 border border-green-400 text-green-700 rounded-lg">
                 <h2 className="text-2xl font-bold mb-4">Thank You!</h2>
                 <p>Your review for Load ID **{loadData.loadIdName}** has been recorded.</p>
-                <button onClick={() => navigate('/')} className="mt-4 text-blue-600 hover:underline">Return Home</button>
+                <button onClick={() => navigate('https://boxtruckfs.com/')} className="mt-4 text-blue-600 hover:underline">Return Home</button>
             </div>
         );
     }
@@ -126,10 +127,38 @@ export default function ReviewFormPage() {
                 </div>
 
                 <div>
+                    <label className="block font-medium text-gray-700">Whould you use btfs again?</label>
+                    <select {...register('useBtfsAgain')} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
+                        <option value="YES">Yes</option>
+                        <option value="MAYBE">Maybe</option>
+                        <option value="NO">No</option>
+                    </select>
+                </div>
+
+                <div>
                     <label className="block font-medium text-gray-700">Communication Rating (1-5)</label>
-                    <input type="number" {...register('communicationRating', { min: 1, max: 5 })} required
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" />
-                    {errors.communicationRating && <span className="text-red-500 text-xs">Rating must be between 1 and 5.</span>}
+                    <select {...register('communicationRating')} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
+                        <option value="5">5 (Excellent)</option>
+                        <option value="4">4 (Good)</option>
+                        <option value="3">3 (Okay)</option>
+                        <option value="2">2 (Poor)</option>
+                        <option value="1">1 (Very Poor)</option>
+
+                    </select>
+
+                </div>
+
+                <div>
+                    <label className="block font-medium text-gray-700">Performance Rating (1-5)</label>
+                    <select {...register('performanceRating')} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
+                        <option value="5">5 (Excellent)</option>
+                        <option value="4">4 (Good)</option>
+                        <option value="3">3 (Okay)</option>
+                        <option value="2">2 (Poor)</option>
+                        <option value="1">1 (Very Poor)</option>
+
+                    </select>
+
                 </div>
 
                 <div>
@@ -142,11 +171,11 @@ export default function ReviewFormPage() {
 
                 <div>
                     <label htmlFor="comment" className="block font-medium text-gray-700">Comment</label>
-                    <textarea id="comment" {...register('comment')} rows={4}
+                    <textarea id="comment" {...register('comment')} rows={4} required
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" />
                 </div>
 
-                <button type="submit" disabled={isSubmitting} className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50">
+                <button type="submit" disabled={isSubmitting} className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teald-600 hover:bg-teald-700 disabled:opacity-50">
                     {isSubmitting ? 'Submitting...' : 'Submit Review'}
                 </button>
             </form>

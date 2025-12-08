@@ -1,5 +1,5 @@
 // App.js (or main routing file)
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from "react-hot-toast";
 import AppLayout from './components/AppLayout';
 import DashboardPage from './components/DashboardPage';
@@ -30,7 +30,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* The parent route uses AppLayout and includes an Outlet */}
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Navigate to='/admin' replace />} />
 
 
           <Route path="/submit-review" element={<ReviewFormPage />} />
