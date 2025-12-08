@@ -6,6 +6,27 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import PageNotFound from './PageNotFound';
 import supabase from '../services/supabase';
+import AlreadyReviewedMessage from './AlreadyReviewedMessage';
+
+// functions to fetch reveiews
+
+async function fetchReviews(id) {
+    const { data, error } = await supabase
+        .from('reviews')
+        .select(`*`)
+        .eq('loadUuid', id)
+        .single()
+
+    if (error) {
+        throw new Error(error)
+
+    }
+
+    return data
+
+}
+
+
 
 // Function to fetch load details along with broker name via join
 
@@ -68,6 +89,14 @@ export default function ReviewFormPage() {
         },
     });
 
+    // fectching reveiws by load id to check if reveiw has been dropped for a load
+
+    // 
+    const { data: loadedReviews, isLoading, isError: loadingError, error } = useQuery({
+        queryKey: ['loadreviews'],
+        queryFn: () => fetchReviews(loadUuid),
+    });
+
     // Handle form submission
     const onSubmit = (formData) => {
         if (!loadData) return;
@@ -86,6 +115,15 @@ export default function ReviewFormPage() {
 
         mutate(submissionData);
     };
+
+
+
+    const comment = loadedReviews?.comment
+
+    if (comment) {
+        return <AlreadyReviewedMessage />;
+
+    }
 
     if (isLoadingDetails) return <div className="text-center mt-10">Loading load details...</div>;
     if (isError || !loadUuid || !loadData) return <PageNotFound />;
