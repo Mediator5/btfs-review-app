@@ -90,7 +90,7 @@ export default function EditBrokerPage() {
                 <button
                     type="submit"
                     disabled={isUpdating}
-                    className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teald-600 hover:bg-teald-700 disabled:opacity-50"
+                    className="cursor-pointer w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teald-600 hover:bg-teald-700 disabled:opacity-50"
                 >
                     {isUpdating ? 'Saving Changes...' : 'Save Changes'}
                 </button>

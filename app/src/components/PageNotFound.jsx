@@ -36,7 +36,7 @@ const PageNotFound = () => {
                     {/* Contact Support Button (assuming you have a contact route) */}
                     <Link
                         to="/contact"
-                        className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg shadow-sm text-gray-700 bg-white hover:bg-gray-100 transition duration-200"
+                        className="cursor-pointer inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg shadow-sm text-gray-700 bg-white hover:bg-gray-100 transition duration-200"
                     >
                         Contact Support
                         <ArrowRight className="w-4 h-4 ml-2" />

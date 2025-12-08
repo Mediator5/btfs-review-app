@@ -71,7 +71,7 @@ export default function Login() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-teald-600 hover:bg-teald-700 disabled:opacity-50 transition duration-150"
+                        className="cursor-pointer w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-teald-600 hover:bg-teald-700 disabled:opacity-50 transition duration-150"
                     >
                         {isSubmitting ? 'Signing In...' : 'Sign In'}
                     </button>

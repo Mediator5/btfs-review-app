@@ -40,7 +40,7 @@ export default function AlreadyReviewedMessage() {
                     {/* Using a standard anchor tag for simplicity */}
                     <Link
                         to="https://boxtruckfs.com/" // This should be your application's home route
-                        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teald-600 hover:bg-teald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className=" cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teald-600 hover:bg-teald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                         Go Home
                     </Link>
