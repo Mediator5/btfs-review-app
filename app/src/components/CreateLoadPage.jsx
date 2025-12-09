@@ -65,7 +65,7 @@ const usStates = [
 const fetchBrokerDetails = async (brokerId) => {
     const { data, error } = await supabase
         .from('brokers')
-        .select('id, name')
+        .select('id, name, email')
         .eq('id', brokerId)
         .single();
     if (error) throw new Error(`Broker not found: ${error.message}`);
@@ -82,6 +82,7 @@ const createLoad = async (loadData) => {
         .single();
     if (error) throw new Error(`Could not create load: ${error.message}`);
     return data;
+
 };
 
 
@@ -98,15 +99,42 @@ export default function CreateLoadPage() {
         queryFn: () => fetchBrokerDetails(brokerId),
         enabled: !!brokerId, // Only run if we have an ID
     });
+    const brokerEmailAddress = broker?.email
+
 
     // Mutation for creating the load
     const { mutate, isPending: isCreatingLoad } = useMutation({
         mutationFn: createLoad,
-        onSuccess: (newLoadData) => {
+        onSuccess: async (newLoadData) => {
             toast.success(`Load ${newLoadData.loadIdName} created successfully.`);
             queryClient.invalidateQueries({ queryKey: ['loads'] }); // Invalidate the main loads list cache
             // Optional: Log the link that should be sent to the broker
-            console.log(`Send this link to the broker: /submit-review?loadUuid=${newLoadData.id}`);
+
+            const loadReviewLink = `https://btfs-review-app.vercel.app/submit-review?loadUuid=${newLoadData.id}`
+            console.log(`Send this link to the broker: ${loadReviewLink} `);
+
+
+            await fetch("https://email-server-iota-teal.vercel.app/api/send-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    to: broker.email,
+                    subject: "Quick 2-sec favor from your box truck people 🚚✨",
+                    html: `
+      <p>Gonna keep this short because we both live in controlled chaos.</p>
+      <p>As a small carrier, our name and reputation is literally all we’ve got. We’re sending out a quick review link so brokers who actually work with us can tell the truth about how we move freight.</p>
+      <p>If you could take two seconds out of the logistics madness and drop an honest review, it would seriously mean the world to us. Good, bad, or “could be better” — we want the real thing.</p>
+      <p>Review Link: <a href="${loadReviewLink}">Click here to leave a review</a></p>
+      <p>Thank you for rocking with us and trusting Box Truck Freight Services with your loads.</p>
+      <p>Much respect,<br/>
+      BTFS Team<br/>
+      Co-Owner, Box Truck Freight Services, LLC<br/>
+      operations@boxtruckfs.com | (312) 278-2355</p>
+    `
+                }),
+            });
+
+
             navigate('/admin/loads'); // Navigate back to the loads list (assuming you create one next)
         },
         onError: (err) => toast.error(err.message),
@@ -149,7 +177,7 @@ export default function CreateLoadPage() {
                     <label className="block font-medium text-gray-700">Origin State</label>
                     <select {...register('originState')} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
                         {usStates.map((state) => (
-                            <option value={state}>{state}</option>
+                            <option key={state} value={state}>{state}</option>
                         ))}
 
                     </select>
@@ -158,7 +186,7 @@ export default function CreateLoadPage() {
                     <label className="block font-medium text-gray-700">Destination State</label>
                     <select {...register('destinationState')} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
                         {usStates.map((state) => (
-                            <option value={state}>{state}</option>
+                            <option key={state} value={state}>{state}</option>
                         ))}
 
                     </select>

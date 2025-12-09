@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import PageNotFound from './PageNotFound';
 import supabase from '../services/supabase';
 import AlreadyReviewedMessage from './AlreadyReviewedMessage';
+import LoadNotFound from './LoadNotFound';
 
 // functions to fetch reveiews
 
@@ -126,7 +127,8 @@ export default function ReviewFormPage() {
     }
 
     if (isLoadingDetails) return <div className="text-center mt-10">Loading load details...</div>;
-    if (isError || !loadUuid || !loadData) return <PageNotFound />;
+    if (isError || !loadUuid || !loadData) return <LoadNotFound />;
+
 
     if (isSubmitted) {
         return (
