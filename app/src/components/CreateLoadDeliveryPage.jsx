@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import supabase from '../services/supabase';
-import usStates from '../services/UsStates';
+import usStates from '../services/usStates';
 
 
 
