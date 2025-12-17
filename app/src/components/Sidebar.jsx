@@ -3,12 +3,14 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 supabase
 import { HomeIcon, CurrencyDollarIcon, UsersIcon, CreditCardIcon, FireIcon, DocumentTextIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { LogOut } from 'lucide-react';
+import { LogOut, Truck } from 'lucide-react';
 import { Home, Users, DollarSign, Star, FileText } from 'lucide-react';
 import supabase from '../services/supabase';
 
+
 const navItems = [
     { name: 'Dashboard', icon: Home, href: '' },
+    { name: 'loads Completion', icon: Truck, href: 'loadsCompletion' },
     { name: 'Brokers', icon: Users, href: 'brokers' },
     { name: 'Loads', icon: FileText, href: 'loads' }, // Changed '/transactions' to '/loads' for consistency
     { name: 'Reviews', icon: Star, href: 'reviews' }, // Used Star icon for reviews/ratings
@@ -54,7 +56,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 <div className="flex items-center justify-between p-4 border-b border-gray-700">
                     <div className="flex items-center">
                         {/* <span className="text-2xl font-bold">BTFS</span> */}
-                        <img src="https://dev-mportfolio5.pantheonsite.io/wp-content/uploads/2025/12/qtq_95.webp" alt="logo" className='w-20 h-20'/>
+                        <img src="https://dev-mportfolio5.pantheonsite.io/wp-content/uploads/2025/12/qtq_95.webp" alt="logo" className='w-20 h-20' />
                     </div>
                     {/* Close button for mobile view */}
                     <button className="lg:hidden" onClick={() => setIsOpen(false)}>

@@ -21,6 +21,8 @@ import PageNotFound from './components/PageNotFound';
 import Home from './components/Home';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
+import DeliveryLoadManager from './components/DeliveryLoadManager';
+import CreateLoadDeliveryPage from './components/CreateLoadDeliveryPage';
 
 const queryClient = new QueryClient()
 
@@ -43,6 +45,8 @@ function App() {
               {/* Child routes appear in the AppLayout's Outlet */}
               <Route index element={<DashboardPage />} /> {/* Renders at "/" */}
               <Route path="brokers" element={<BrokersTable />} />
+              <Route path="loadsCompletion" element={<DeliveryLoadManager />} />
+              <Route path="loadsCompletion/create" element={<CreateLoadDeliveryPage />} />
               <Route path="create-broker" element={<CreateBrokerForm />} />
               <Route path="brokers/edit/:id" element={<EditBrokerPage />} />
               <Route path="loads" element={<LoadsTable />} />
